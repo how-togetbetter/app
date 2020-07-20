@@ -14,7 +14,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello from MY REACT project</h1>
+        <h1>Hello from my REACT project</h1>
+        <input type="text" />
+        <button>Search Youtube</button>
       </div>
     );
   }
