@@ -1,5 +1,7 @@
 import React from "react";
 
+import Service from "./Service.jsx";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,8 @@ class App extends React.Component {
       <div>
         <h1>Hello from my REACT project</h1>
         <input type="text" />
-        <button>Search Youtube</button>
+        <button>Search Video</button>
+        <Service />
       </div>
     );
   }
