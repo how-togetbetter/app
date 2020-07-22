@@ -5,6 +5,7 @@ import Nav from "./Nav.jsx";
 import Service from "./Service.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
+import Banner from "./Banner.jsx";
 const navItems = [
   {
     name: "About",
@@ -63,7 +64,7 @@ class App extends React.Component {
       <div className="main">
         <Nav items={items} />
         <div>
-          <h1>Ready for more motivational videos?</h1>
+          <Banner />
           <VideoPlayer submit={this.handleSubmit} videos={videos} />
           <Service />
         </div>
