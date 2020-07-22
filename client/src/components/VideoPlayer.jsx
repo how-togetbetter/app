@@ -103,8 +103,11 @@ class VideoPlayer extends React.Component {
                 <span
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
+                  onClick={this.clickHandler}
                 ></span>
-                <span className="sr-only">Previous</span>
+                <span className="sr-only" onClick={this.clickHandler}>
+                  Previous
+                </span>
               </a>
               <a
                 className="carousel-control-next"
@@ -117,8 +120,11 @@ class VideoPlayer extends React.Component {
                 <span
                   className="carousel-control-next-icon"
                   aria-hidden="true"
+                  onClick={this.clickHandler}
                 ></span>
-                <span className="sr-only">Next</span>
+                <span className="sr-only" onClick={this.clickHandler}>
+                  Next
+                </span>
               </a>
             </div>
           </div>
