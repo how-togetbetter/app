@@ -3,3 +3,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.video,
+.carousel {
+  height: 30rem;
+}
