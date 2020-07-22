@@ -59,7 +59,6 @@ class App extends React.Component {
 
   render() {
     const { videos, items } = this.state;
-    console.log(videos);
     return (
       <div className="main">
         <Nav items={items} />

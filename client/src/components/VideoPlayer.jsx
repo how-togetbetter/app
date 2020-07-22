@@ -27,13 +27,15 @@ class VideoPlayer extends React.Component {
     const { index } = this.state;
     const { videos } = this.props;
     let id;
-    if (target.id === "next") {
-      id = index >= videos.length - 1 ? 0 : index + 1;
+    if (target.id !== undefined) {
+      if (target.id === "next") {
+        id = index >= videos.length - 1 ? 0 : index + 1;
+      }
+      if (target.id === "prev") {
+        id = index <= 0 ? videos.length - 1 : index - 1;
+      }
+      this.setState({ index: id });
     }
-    if (target.id === "prev") {
-      id = index <= 0 ? videos.length - 1 : index - 1;
-    }
-    this.setState({ index: id });
   }
 
   render() {
@@ -72,6 +74,7 @@ class VideoPlayer extends React.Component {
                   <li
                     data-target="#carouselExampleCaptions"
                     data-slide-to={idx}
+                    key={idx}
                     className={idx === index ? "active" : null}
                   ></li>
                 ))}
