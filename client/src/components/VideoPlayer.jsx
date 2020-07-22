@@ -27,15 +27,14 @@ class VideoPlayer extends React.Component {
     const { index } = this.state;
     const { videos } = this.props;
     let id;
-    if (target.id !== undefined) {
-      if (target.id === "next") {
-        id = index >= videos.length - 1 ? 0 : index + 1;
-      }
-      if (target.id === "prev") {
-        id = index <= 0 ? videos.length - 1 : index - 1;
-      }
-      this.setState({ index: id });
+
+    if (target.id.includes("next")) {
+      id = index >= videos.length - 1 ? 0 : index + 1;
     }
+    if (target.id.includes("prev")) {
+      id = index <= 0 ? videos.length - 1 : index - 1;
+    }
+    this.setState({ index: id });
   }
 
   render() {
@@ -102,12 +101,10 @@ class VideoPlayer extends React.Component {
               >
                 <span
                   className="carousel-control-prev-icon"
+                  id="prev-button"
                   aria-hidden="true"
-                  onClick={this.clickHandler}
                 ></span>
-                <span className="sr-only" onClick={this.clickHandler}>
-                  Previous
-                </span>
+                <span className="sr-only">Previous</span>
               </a>
               <a
                 className="carousel-control-next"
@@ -119,12 +116,10 @@ class VideoPlayer extends React.Component {
               >
                 <span
                   className="carousel-control-next-icon"
+                  id="next-button"
                   aria-hidden="true"
-                  onClick={this.clickHandler}
                 ></span>
-                <span className="sr-only" onClick={this.clickHandler}>
-                  Next
-                </span>
+                <span className="sr-only">Next</span>
               </a>
             </div>
           </div>
