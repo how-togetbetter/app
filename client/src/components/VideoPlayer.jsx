@@ -21,6 +21,7 @@ class VideoPlayer extends React.Component {
     e.preventDefault();
     let { value } = this.state;
     this.props.submit(value);
+    this.setState({ value: "" });
   }
 
   clickHandler({ target }) {
@@ -43,7 +44,7 @@ class VideoPlayer extends React.Component {
     let active = videos[index];
     return (
       <div>
-        <form action="submit">
+        <form className="form" action="submit">
           <input
             className="form-control mr-sm-2"
             type="search"
@@ -74,6 +75,7 @@ class VideoPlayer extends React.Component {
                     data-target="#carouselExampleCaptions"
                     data-slide-to={idx}
                     key={idx}
+                    id={`li-${idx}`}
                     className={idx === index ? "active" : null}
                   ></li>
                 ))}
@@ -123,7 +125,15 @@ class VideoPlayer extends React.Component {
               </a>
             </div>
           </div>
-        ) : null}
+        ) : (
+          <div className="main-player">
+            <div
+              id="carouselExampleCaptions"
+              className="carousel slide"
+              data-ride="carousel"
+            ></div>
+          </div>
+        )}
       </div>
     );
   }

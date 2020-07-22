@@ -24,7 +24,7 @@ class Nav extends React.Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse">
+        <div className="navbar collapse navbar-collapse">
           <a className="navbar-brand" href="#">
             iPersonalTrainer
           </a>

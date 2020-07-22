@@ -1,10 +1,20 @@
-.collapse,
-.navbar-collapse {
+.navbar {
   display: flex;
-  justify-content: space-between;
 }
 
 .video,
 .carousel {
   height: 30rem;
+  background-color: #000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  text-align: center;
+  background-color: #000;
+  color: #fff;
 }
