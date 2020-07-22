@@ -1,6 +1,7 @@
 import React from "react";
 
 import NavItem from "./NavItem";
+import Search from "./Search";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Nav extends React.Component {
             </button>
           </form>
         </div>
+        <Search />
       </nav>
     );
   }
