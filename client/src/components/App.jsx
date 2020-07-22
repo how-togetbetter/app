@@ -1,9 +1,10 @@
 import React from "react";
+import axios from "axios";
 
 import Nav from "./Nav.jsx";
 import Service from "./Service.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
-
+import API_KEY from "../../../config";
 const navItems = [
   {
     name: "About",
@@ -24,8 +25,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      navItems,
+      items: navItems,
       query: "",
+      videos: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,21 +35,36 @@ class App extends React.Component {
 
   componentDidMount() {
     //call API to get data using Axios and update state
-    this.setState({ navItems, query: "after component did mount" });
+    this.setState({ items: navItems });
   }
 
   handleSubmit(query) {
-    this.setState({ query });
+    //call YouTubeAPI and setState
+    const maxResults = 10;
+    const { key } = API_KEY;
+    let url = `https://www.googleapis.com/youtube/v3/search?key=${key}&part=snippet&order=viewCount&maxResults=${maxResults}&q=${query}&type=video`;
+    axios
+      .get(url)
+      .then(({ data }) => {
+        this.setState({
+          query,
+          videos: data.items,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
-    const items = this.state.navItems;
+    const { videos, items } = this.state;
+    console.log(videos);
     return (
       <div className="main">
         <Nav items={items} />
         <div>
           <h1>Ready for more motivational videos?</h1>
-          <VideoPlayer submit={this.handleSubmit} />
+          <VideoPlayer submit={this.handleSubmit} videos={videos} />
           <Service />
         </div>
       </div>

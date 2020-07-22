@@ -24,7 +24,7 @@ class Nav extends React.Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div className="collapse navbar-collapse">
           <a className="navbar-brand" href="#">
             iPersonalTrainer
           </a>
@@ -33,20 +33,6 @@ class Nav extends React.Component {
               <NavItem key={idx} list={item} />
             ))}
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </nav>
     );
