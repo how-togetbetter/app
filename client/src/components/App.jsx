@@ -2,6 +2,7 @@ import React from "react";
 
 import Nav from "./Nav.jsx";
 import Service from "./Service.jsx";
+import VideoPlayer from "./VideoPlayer.jsx";
 
 const navItems = [
   {
@@ -16,31 +17,37 @@ const navItems = [
     name: "Contact",
     link: "#",
   },
-  {
-    name: "Who's Ousmane",
-    link: "#",
-  },
 ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      navItems,
+      query: "",
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     //call API to get data using Axios and update state
+    this.setState({ navItems, query: "after component did mount" });
+  }
+
+  handleSubmit(query) {
+    this.setState({ query });
   }
 
   render() {
+    const items = this.state.navItems;
     return (
       <div className="main">
-        <Nav items={navItems} />
+        <Nav items={items} />
         <div>
-          <h1>Hello from my REACT project</h1>
-          <input type="text" />
-          <button>Search Video</button>
+          <h1>Ready for more motivational videos?</h1>
+          <VideoPlayer submit={this.handleSubmit} />
           <Service />
         </div>
       </div>
