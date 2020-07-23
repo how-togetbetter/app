@@ -11,6 +11,7 @@ class VideoPlayer extends React.Component {
     this.changeHandler = this.changeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
   }
 
   changeHandler({ target }) {
@@ -36,6 +37,11 @@ class VideoPlayer extends React.Component {
       id = index <= 0 ? videos.length - 1 : index - 1;
     }
     this.setState({ index: id });
+  }
+
+  toggleLike() {
+    const { index } = this.state;
+    this.props.fav(index);
   }
 
   render() {
@@ -64,6 +70,16 @@ class VideoPlayer extends React.Component {
         </form>
         {videos.length > 0 ? (
           <div className="main-player">
+            <div className="liked" id="like-btn" onClick={this.toggleLike}>
+              <div className="liked-container">
+                {active.liked ? (
+                  <i className="fas fa-heart" />
+                ) : (
+                  <i className="far fa-heart" />
+                )}
+                <p>Add to my favorites</p>
+              </div>
+            </div>
             <div
               id="carouselExampleCaptions"
               className="carousel slide"
@@ -84,12 +100,12 @@ class VideoPlayer extends React.Component {
                 <div className="carousel-item active">
                   <iframe
                     className="d-block w-100 video"
-                    src={`https://www.youtube.com/embed/${active.id.videoId}`}
+                    src={`https://www.youtube.com/embed/${active.id}`}
                     frameBorder="0"
                   ></iframe>
                   <div className="carousel-caption d-none d-md-block">
-                    <h5>{active.snippet.title}</h5>
-                    <p>{active.snippet.description}</p>
+                    <h5>{active.title}</h5>
+                    <p>{active.description}</p>
                   </div>
                 </div>
               </div>

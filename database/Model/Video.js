@@ -24,7 +24,7 @@ const getAllVideos = (callback) => {
   });
 };
 
-const addToFavorites = (video, callback) => {
+const changeFavorite = (video, callback) => {
   Photo.create(video, (err) => {
     if (err) {
       callback(err);
@@ -38,5 +38,5 @@ const addToFavorites = (video, callback) => {
 module.exports = {
   Video,
   getAllVideos,
-  addToFavorites,
+  changeFavorite,
 };

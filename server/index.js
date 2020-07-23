@@ -15,8 +15,32 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 
 // Routes
-// app.get("/", (req, res) => {
-// });
+app.get("/fav", (req, res) => {
+  Video.getAllVideos((err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+app.patch("/fav/:id", (req, res) => {
+  const id = req.param.id;
+  console.log(req.body);
+  Video.changeFavorite(id, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send("favorite status updated");
+    }
+  });
+});
+
+app.post("/fav", (req, res) => {
+  const video = req.body;
+  console.log(video);
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);

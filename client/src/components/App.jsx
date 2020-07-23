@@ -29,14 +29,19 @@ class App extends React.Component {
       items: navItems,
       query: "",
       videos: [],
+      favorites: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   componentDidMount() {
     //call API to get data using Axios and update state
-    this.setState({ items: navItems });
+    axios
+      .get("/fav")
+      .then(({ data }) => this.setState({ favorites: data }))
+      .catch((err) => console.log(err));
   }
 
   handleSubmit(query) {
@@ -47,14 +52,35 @@ class App extends React.Component {
     axios
       .get(url)
       .then(({ data }) => {
+        let videos = [];
+        data.items.forEach((item) => {
+          let video = {};
+          video.liked = false;
+          video.id = item.id.videoId;
+          video.title = item.snippet.title;
+          video.publishedAt = item.snippet.publishedAt;
+          video.description = item.snippet.description;
+          video.thumbnails = item.snippet.thumbnails;
+          videos.push(video);
+        });
         this.setState({
           query,
-          videos: data.items,
+          videos,
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  handleFavorite(idx) {
+    let { videos } = this.state;
+    videos[idx].liked = !videos[idx].liked;
+    this.setState({ videos });
+    axios
+      .patch(`/fav/${videos[idx].id}`)
+      .then((msg) => console.log(msg))
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -64,7 +90,11 @@ class App extends React.Component {
         <Nav items={items} />
         <div>
           <Banner />
-          <VideoPlayer submit={this.handleSubmit} videos={videos} />
+          <VideoPlayer
+            submit={this.handleSubmit}
+            fav={this.handleFavorite}
+            videos={videos}
+          />
           <Service />
         </div>
       </div>
