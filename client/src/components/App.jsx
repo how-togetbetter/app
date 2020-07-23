@@ -2,12 +2,11 @@ import React from "react";
 import axios from "axios";
 
 import Nav from "./Nav.jsx";
-import Service from "./Service.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
 import Banner from "./Banner.jsx";
-import YogaIcon from "./ExerciseService.jsx";
 import ExtraServices from "./ExtraServices.jsx";
+import Footer from "./Footer.jsx";
 const navItems = [
   {
     name: "About",
@@ -98,6 +97,7 @@ class App extends React.Component {
             videos={videos}
           />
           <ExtraServices />
+          <Footer />
         </div>
       </div>
     );
