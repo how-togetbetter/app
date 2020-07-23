@@ -6,6 +6,8 @@ import Service from "./Service.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
 import Banner from "./Banner.jsx";
+import YogaIcon from "./ExerciseService.jsx";
+import ExtraServices from "./ExtraServices.jsx";
 const navItems = [
   {
     name: "About",
@@ -96,6 +98,7 @@ class App extends React.Component {
             videos={videos}
           />
           <Service />
+          <ExtraServices />
         </div>
       </div>
     );
