@@ -2,6 +2,17 @@ import React from "react";
 import { GrTrophy } from "react-icons/gr";
 
 class NavBarTest extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler({ target }) {
+    if (target.innerText === "About") {
+      this.props.handleClick();
+    }
+  }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,22 +33,14 @@ class NavBarTest extends React.Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Services
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contact
-              </a>
-            </li>
+          <ul className="navbar-nav ml-auto">
+            {this.props.items.map((item, idx) => (
+              <li className="nav-item" key={idx} onClick={this.clickHandler}>
+                <a className="nav-link" href={item.link}>
+                  {item.name}
+                </a>
+              </li>
+            ))}
             {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

@@ -5,9 +5,11 @@ import axios from "axios";
 import NavBarTest from "./NavBarTest";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
+import About from "./About";
 import Banner from "./Banner.jsx";
 import ExtraServices from "./ExtraServices.jsx";
 import Footer from "./Footer.jsx";
+
 const navItems = [
   {
     name: "About",
@@ -19,11 +21,29 @@ const navItems = [
   },
   {
     name: "Services",
-    link: "#",
+    link: "#services",
   },
   {
-    name: "Contact",
+    name: "Profile",
     link: "#",
+  },
+];
+
+const welcome = [
+  {
+    id: "btPJPFnesV4",
+    liked: true,
+    title: "Survivor - Eye Of The Tiger (Official Music Video)",
+    publishedAt: "2009-11-14T13:05:10Z",
+    description:
+      'Watch the official music video for "Eye Of The Tiger" by Survivor Listen to Survivor: https://Survivor.lnk.to/listenYD Subscribe to the official Survivor YouTube ...',
+    thumbnails: {
+      default: {
+        height: 90,
+        url: "https://i.ytimg.com/vi/btPJPFnesV4/default.jpg",
+        width: 120,
+      },
+    },
   },
 ];
 
@@ -33,6 +53,7 @@ class App extends React.Component {
 
     this.state = {
       items: navItems,
+      about: false,
       query: "",
       videos: [],
       favorites: [],
@@ -40,6 +61,7 @@ class App extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +70,7 @@ class App extends React.Component {
       .get("/fav")
       .then(({ data }) => this.setState({ favorites: data }))
       .catch((err) => console.log(err));
+    this.setState({ videos: welcome });
   }
 
   handleSubmit(query) {
@@ -58,6 +81,7 @@ class App extends React.Component {
     axios
       .get(url)
       .then(({ data }) => {
+        console.log(data);
         let videos = [];
         data.items.forEach((item) => {
           let video = {};
@@ -93,12 +117,18 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  handleClick() {
+    let { about } = this.state;
+    this.setState({ about: !about });
+  }
+
   render() {
-    const { videos, items } = this.state;
+    const { videos, items, about } = this.state;
     return (
       <div className="main">
         {/* <Nav items={items} /> */}
-        <NavBarTest />
+        <NavBarTest items={items} handleClick={this.handleClick} />
+        {about ? <About /> : null}
         <div>
           <Banner />
           <VideoPlayer

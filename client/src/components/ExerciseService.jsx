@@ -30,7 +30,7 @@ class ExerciseService extends React.Component {
       iconChoice = <GrGamepad />;
     }
     return (
-      <div className="service-box">
+      <div className="service-box" id="services">
         <div>
           <h1 className="service-icon">{iconChoice}</h1>
           <button
