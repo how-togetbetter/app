@@ -48,7 +48,6 @@ class App extends React.Component {
       .get("/fav")
       .then(({ data }) => this.setState({ favorites: data }))
       .catch((err) => console.log(err));
-    console.log(this.state.favorites);
   }
 
   handleSubmit(query) {
@@ -61,7 +60,6 @@ class App extends React.Component {
       .then(({ data }) => {
         let videos = [];
         data.items.forEach((item) => {
-          console.log(item);
           let video = {};
           video.liked = false;
           video.id = item.id.videoId;
