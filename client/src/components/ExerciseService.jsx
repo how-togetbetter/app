@@ -35,7 +35,7 @@ class ExerciseService extends React.Component {
           <h1 className="service-icon">{iconChoice}</h1>
           <button
             type="button"
-            className="btn btn-dark"
+            className="btn btn-outline-dark rounded-pill"
             data-toggle="modal"
             data-target="#exampleModal"
           >
