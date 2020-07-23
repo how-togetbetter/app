@@ -2,6 +2,11 @@
   display: flex;
 }
 
+/* navabrTest spacing */
+/* .navbar-brand {
+  display: inline;
+  padding-right: 3px;
+} */
 .video,
 .carousel {
   height: 30rem;
