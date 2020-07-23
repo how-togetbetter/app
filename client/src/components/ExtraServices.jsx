@@ -10,6 +10,9 @@ class ExtraServices extends Component {
           <ExerciseService info="Running Club" icon="run" />
           <ExerciseService info="Yoga Class" icon="yoga" />
           <ExerciseService info="Nutrition Workshop" icon="nutrition" />
+          <ExerciseService info="Running Club" icon="run" />
+          <ExerciseService info="Yoga Class" icon="yoga" />
+          <ExerciseService info="Nutrition Workshop" icon="nutrition" />
         </div>
       </div>
     );
