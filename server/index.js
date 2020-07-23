@@ -27,19 +27,14 @@ app.get("/fav", (req, res) => {
 
 app.patch("/fav/:id", (req, res) => {
   const id = req.param.id;
-  console.log(req.body);
-  Video.changeFavorite(id, (err, results) => {
+  const video = req.body.data;
+  Video.changeFavorite(id, video, (err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.send("favorite status updated");
     }
   });
-});
-
-app.post("/fav", (req, res) => {
-  const video = req.body;
-  console.log(video);
 });
 
 app.listen(PORT, () => {
