@@ -24,6 +24,10 @@
   color: #fff;
 }
 
+/* Banner CSS */
+.banner-title {
+  padding: 40px;
+}
 /* Icon CSS */
 
 .services-container {
@@ -45,7 +49,9 @@
   margin: 2rem;
 }
 
-.service-title {
+.services-title {
+  padding: 20px;
+  font-weight: bold;
 }
 .service-icon {
   padding-bottom: 20px;
