@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-import Nav from "./Nav.jsx";
+// import Nav from "./Nav.jsx";
+import NavBarTest from "./NavBarTest";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
 import Banner from "./Banner.jsx";
@@ -88,7 +89,8 @@ class App extends React.Component {
     const { videos, items } = this.state;
     return (
       <div className="main">
-        <Nav items={items} />
+        {/* <Nav items={items} /> */}
+        <NavBarTest />
         <div>
           <Banner />
           <VideoPlayer
