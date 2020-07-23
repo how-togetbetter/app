@@ -1,5 +1,12 @@
 import React from "react";
-import { GrYoga, GrRun, GrCafeteria } from "react-icons/gr";
+import {
+  GrYoga,
+  GrRun,
+  GrCafeteria,
+  GrRestaurant,
+  GrSwim,
+  GrGamepad,
+} from "react-icons/gr";
 import Service from "./Service.jsx";
 class ExerciseService extends React.Component {
   constructor(props) {
@@ -15,6 +22,12 @@ class ExerciseService extends React.Component {
       iconChoice = <GrYoga />;
     } else if (this.props.icon === "nutrition") {
       iconChoice = <GrCafeteria />;
+    } else if (this.props.icon === "cooking") {
+      iconChoice = <GrRestaurant />;
+    } else if (this.props.icon === "swim") {
+      iconChoice = <GrSwim />;
+    } else if (this.props.icon === "game") {
+      iconChoice = <GrGamepad />;
     }
     return (
       <div className="service-box">

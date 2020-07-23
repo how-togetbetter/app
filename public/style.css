@@ -2,6 +2,11 @@
   display: flex;
 }
 
+/* navabrTest spacing */
+/* .navbar-brand {
+  display: inline;
+  padding-right: 3px;
+} */
 .video,
 .carousel {
   height: 30rem;
@@ -35,8 +40,9 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 200px;
-  margin-bottom: 2rem;
+  height: auto;
+  width: 300px;
+  margin: 2rem;
 }
 
 .service-title {
