@@ -14,6 +14,10 @@ const navItems = [
     link: "#",
   },
   {
+    name: "My Favorite Videos",
+    link: "#",
+  },
+  {
     name: "Services",
     link: "#",
   },
@@ -44,6 +48,7 @@ class App extends React.Component {
       .get("/fav")
       .then(({ data }) => this.setState({ favorites: data }))
       .catch((err) => console.log(err));
+    console.log(this.state.favorites);
   }
 
   handleSubmit(query) {
@@ -56,13 +61,15 @@ class App extends React.Component {
       .then(({ data }) => {
         let videos = [];
         data.items.forEach((item) => {
+          console.log(item);
           let video = {};
           video.liked = false;
           video.id = item.id.videoId;
           video.title = item.snippet.title;
           video.publishedAt = item.snippet.publishedAt;
           video.description = item.snippet.description;
-          video.thumbnails = item.snippet.thumbnails;
+          video.thumbnails = {};
+          video.thumbnails.default = item.snippet.thumbnails.default;
           videos.push(video);
         });
         this.setState({
@@ -77,10 +84,13 @@ class App extends React.Component {
 
   handleFavorite(idx) {
     let { videos } = this.state;
-    videos[idx].liked = !videos[idx].liked;
+    let video = videos[idx];
+    video.liked = !video.liked;
     this.setState({ videos });
     axios
-      .patch(`/fav/${videos[idx].id}`)
+      .patch(`/fav/${video.id}`, {
+        data: video,
+      })
       .then((msg) => console.log(msg))
       .catch((err) => console.log(err));
   }

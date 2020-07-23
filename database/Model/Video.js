@@ -7,7 +7,9 @@ const videoSchema = new mongoose.Schema({
   description: String,
   thumbnails: {
     default: {
+      height: Number,
       url: String,
+      width: Number,
     },
   },
 });
@@ -24,15 +26,25 @@ const getAllVideos = (callback) => {
   });
 };
 
-const changeFavorite = (video, callback) => {
-  Photo.create(video, (err) => {
-    if (err) {
-      callback(err);
-    } else {
-      console.log("added");
-      callback(null);
-    }
-  });
+const changeFavorite = (id, video, callback) => {
+  if (!Video.exists({ id })) {
+    Video.findOneAndUpdate({ id }, video, (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null);
+      }
+    });
+  } else {
+    Video.create(video, (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        console.log("added");
+        callback(null);
+      }
+    });
+  }
 };
 
 module.exports = {
