@@ -97,7 +97,6 @@ class App extends React.Component {
             fav={this.handleFavorite}
             videos={videos}
           />
-          <Service />
           <ExtraServices />
         </div>
       </div>
