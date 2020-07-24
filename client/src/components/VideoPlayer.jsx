@@ -77,88 +77,90 @@ class VideoPlayer extends React.Component {
             </a>
           </form>
         </div>
-        {videos.length > 0 ? (
-          <div className="main-player" id="main">
-            <div className="liked" id="like-btn" onClick={this.toggleLike}>
-              <div className="liked-container">
-                {active.liked ? (
-                  <i className="fas fa-heart" />
-                ) : (
-                  <i className="far fa-heart" />
-                )}
-                <p>Add to my favorites</p>
-              </div>
-            </div>
-            <div
-              id="carouselExampleCaptions"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <ol className="carousel-indicators">
-                {videos.map((video, idx) => (
-                  <li
-                    data-target="#carouselExampleCaptions"
-                    data-slide-to={idx}
-                    key={idx}
-                    id={`li-${idx}`}
-                    className={idx === index ? "active" : null}
-                  ></li>
-                ))}
-              </ol>
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <iframe
-                    className="d-block w-100 video"
-                    src={`https://www.youtube.com/embed/${active.id}`}
-                    frameBorder="0"
-                  ></iframe>
-                  <div className="carousel-caption d-none d-md-block">
-                    <h5>{active.title}</h5>
-                    <p>{active.description}</p>
-                  </div>
+        <div id="main">
+          {videos.length > 0 ? (
+            <div className="main-player">
+              <div className="liked" id="like-btn" onClick={this.toggleLike}>
+                <div className="liked-container">
+                  {active.liked ? (
+                    <i className="fas fa-heart" />
+                  ) : (
+                    <i className="far fa-heart" />
+                  )}
+                  <p>Add to my favorites</p>
                 </div>
               </div>
-              <a
-                className="carousel-control-prev"
-                href="#carouselExampleCaptions"
-                role="button"
-                data-slide="prev"
-                id="prev"
-                onClick={this.clickHandler}
+              <div
+                id="carouselExampleCaptions"
+                className="carousel slide"
+                data-ride="carousel"
               >
-                <span
-                  className="carousel-control-prev-icon"
-                  id="prev-button"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#carouselExampleCaptions"
-                role="button"
-                data-slide="next"
-                id="next"
-                onClick={this.clickHandler}
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  id="next-button"
-                  aria-hidden="true"
-                ></span>
-                <span className="sr-only">Next</span>
-              </a>
+                <ol className="carousel-indicators">
+                  {videos.map((video, idx) => (
+                    <li
+                      data-target="#carouselExampleCaptions"
+                      data-slide-to={idx}
+                      key={idx}
+                      id={`li-${idx}`}
+                      className={idx === index ? "active" : null}
+                    ></li>
+                  ))}
+                </ol>
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                    <iframe
+                      className="d-block w-100 video"
+                      src={`https://www.youtube.com/embed/${active.id}`}
+                      frameBorder="0"
+                    ></iframe>
+                    <div className="carousel-caption d-none d-md-block">
+                      <h5>{active.title}</h5>
+                      <p>{active.description}</p>
+                    </div>
+                  </div>
+                </div>
+                <a
+                  className="carousel-control-prev"
+                  href="#carouselExampleCaptions"
+                  role="button"
+                  data-slide="prev"
+                  id="prev"
+                  onClick={this.clickHandler}
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    id="prev-button"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="sr-only">Previous</span>
+                </a>
+                <a
+                  className="carousel-control-next"
+                  href="#carouselExampleCaptions"
+                  role="button"
+                  data-slide="next"
+                  id="next"
+                  onClick={this.clickHandler}
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    id="next-button"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="sr-only">Next</span>
+                </a>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="main-player">
-            <div
-              id="carouselExampleCaptions"
-              className="carousel slide"
-              data-ride="carousel"
-            ></div>
-          </div>
-        )}
+          ) : (
+            <div className="main-player">
+              <div
+                id="carouselExampleCaptions"
+                className="carousel slide"
+                data-ride="carousel"
+              ></div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -112,7 +112,8 @@ class App extends React.Component {
   handleFavorite(idx) {
     let { videos } = this.state;
     let video = videos[idx];
-    video.liked = !video.liked;
+
+    video.liked = video.liked === undefined ? true : !video.liked;
     this.setState({ videos });
     axios
       .post("/fav", {
