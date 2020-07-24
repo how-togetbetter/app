@@ -4,6 +4,7 @@
   width: 100vw;
   position: fixed;
   z-index: 10;
+  align-items: baseline;
 }
 
 body {
@@ -12,6 +13,11 @@ body {
 
 h1 {
   text-transform: uppercase;
+}
+
+.nav-link,
+.navbar-brand {
+  background-color: #f8f9fa;
 }
 /* VideoPlayer main  */
 .main-container {
@@ -52,7 +58,8 @@ h1 {
 }
 
 .video,
-.carousel {
+.carousel,
+#carouselExampleCaptions a {
   height: 80vh;
   margin-bottom: 5rem;
   background-color: #000;

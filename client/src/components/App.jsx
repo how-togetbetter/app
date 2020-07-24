@@ -6,18 +6,17 @@ import NavBar from "./NavBar";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
 import About from "./About";
-import Banner from "./Banner.jsx";
 import Services from "./Services.jsx";
 import Footer from "./Footer.jsx";
 
-const navItems = [
+let navItems = [
   {
     name: "About",
     link: "#",
   },
   {
     name: "My Favorite Videos",
-    link: "#",
+    link: "#main",
   },
   {
     name: "Services",
@@ -28,6 +27,8 @@ const navItems = [
     link: "#",
   },
 ];
+
+let goBack = [{ name: "Go Back", link: "#" }];
 
 const welcome = [
   {
@@ -57,6 +58,7 @@ class App extends React.Component {
       query: "",
       videos: [],
       favorites: [],
+      showFav: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,7 +70,10 @@ class App extends React.Component {
     //call API to get data using Axios and update state
     axios
       .get("/fav")
-      .then(({ data }) => this.setState({ favorites: data }))
+      .then(({ data }) => {
+        console.log(data);
+        this.setState({ favorites: data });
+      })
       .catch((err) => console.log(err));
     this.setState({ videos: welcome });
   }
@@ -110,30 +115,43 @@ class App extends React.Component {
     video.liked = !video.liked;
     this.setState({ videos });
     axios
-      .patch(`/fav/${video.id}`, {
-        data: video,
+      .post("/fav", {
+        video,
       })
       .then((msg) => console.log(msg))
       .catch((err) => console.log(err));
   }
 
-  handleClick() {
-    let { about } = this.state;
-    this.setState({ about: !about });
+  handleClick(id) {
+    let { about, showFav } = this.state;
+    about = !about;
+    showFav = !showFav;
+    if (about || showFav) {
+      if (id === "about") {
+        this.setState({ about });
+      }
+      if (id === "my favorite videos") {
+        this.setState({ showFav });
+      }
+      this.setState({ items: goBack });
+    }
+    if (id === "go back") {
+      this.setState({ about: false, showFav: false, items: navItems });
+    }
   }
 
   render() {
-    const { videos, items, about } = this.state;
+    const { videos, items, about, favorites, showFav } = this.state;
+    let playList = showFav ? favorites : videos;
     return (
       <div className="main">
-        {/* <Nav items={items} /> */}
         <NavBar items={items} handleClick={this.handleClick} />
         {about ? <About /> : null}
         <div>
           <VideoPlayer
             submit={this.handleSubmit}
             fav={this.handleFavorite}
-            videos={videos}
+            videos={playList}
           />
           <Services />
           <Footer />

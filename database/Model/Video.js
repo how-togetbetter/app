@@ -5,6 +5,7 @@ const videoSchema = new mongoose.Schema({
   publishedAt: Date,
   title: String,
   description: String,
+  liked: Boolean,
   thumbnails: {
     default: {
       height: Number,
@@ -27,24 +28,29 @@ const getAllVideos = (callback) => {
 };
 
 const changeFavorite = (id, video, callback) => {
-  if (!Video.exists({ id })) {
-    Video.findOneAndUpdate({ id }, video, (err) => {
-      if (err) {
-        callback(err);
+  Video.exists({ id }, (err, res) => {
+    if (err) {
+      callback(err);
+    } else {
+      if (res) {
+        Video.findOneAndUpdate({ id }, video, (err) => {
+          if (err) {
+            callback(err);
+          } else {
+            callback(null, "favorite status updated");
+          }
+        });
       } else {
-        callback(null);
+        Video.create(video, (err) => {
+          if (err) {
+            callback(err);
+          } else {
+            callback(null, "Video added to my favorites");
+          }
+        });
       }
-    });
-  } else {
-    Video.create(video, (err) => {
-      if (err) {
-        callback(err);
-      } else {
-        console.log("added");
-        callback(null);
-      }
-    });
-  }
+    }
+  });
 };
 
 module.exports = {

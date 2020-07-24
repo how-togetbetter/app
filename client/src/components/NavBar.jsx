@@ -9,9 +9,8 @@ class NavBar extends React.Component {
   }
 
   clickHandler({ target }) {
-    if (target.innerText === "About") {
-      this.props.handleClick();
-    }
+    let input = target.innerText.toLowerCase();
+    this.props.handleClick(input);
   }
   render() {
     return (
@@ -19,7 +18,6 @@ class NavBar extends React.Component {
         <a className="navbar-brand" href="#">
           <GrTrophy />
         </a>
-        {/* <a style={{ fontWeight: "bold", paddingRight: "3px" }}>MS</a> */}
         <button
           className="navbar-toggler"
           type="button"

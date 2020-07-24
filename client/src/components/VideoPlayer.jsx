@@ -22,8 +22,13 @@ class VideoPlayer extends React.Component {
   submitHandler(e) {
     // e.preventDefault();
     let { value } = this.state;
-    this.props.submit(value);
-    this.setState({ value: "" });
+    if (value !== "") {
+      this.props.submit(value);
+      this.setState({ value: "" });
+    } else {
+      e.preventDefault();
+      alert("Please enter a valid input");
+    }
   }
 
   clickHandler({ target }) {

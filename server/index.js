@@ -25,14 +25,13 @@ app.get("/fav", (req, res) => {
   });
 });
 
-app.patch("/fav/:id", (req, res) => {
-  const id = req.param.id;
-  const video = req.body.data;
-  Video.changeFavorite(id, video, (err, results) => {
+app.post("/fav/", (req, res) => {
+  const video = req.body.video;
+  Video.changeFavorite(video.id, video, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send("favorite status updated");
+      res.send(result);
     }
   });
 });
