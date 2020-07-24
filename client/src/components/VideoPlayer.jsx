@@ -1,4 +1,5 @@
 import React from "react";
+import Banner from "./Banner.jsx";
 
 class VideoPlayer extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class VideoPlayer extends React.Component {
   }
 
   submitHandler(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let { value } = this.state;
     this.props.submit(value);
     this.setState({ value: "" });
@@ -50,26 +51,29 @@ class VideoPlayer extends React.Component {
     let active = videos[index];
     return (
       <div>
-        <form className="form" action="submit">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={this.state.value}
-            placeholder="Enter topic here..."
-            onChange={this.changeHandler}
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-            onClick={this.submitHandler}
-          >
-            Search
-          </button>
-        </form>
+        <div className="main-container">
+          <Banner />
+          <form className="form" action="submit">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={this.state.value}
+              placeholder="Enter topic here..."
+              onChange={this.changeHandler}
+            />
+            <a
+              className="btn btn-outline-success my-2 my-sm-0"
+              href="#main"
+              onClick={this.submitHandler}
+            >
+              Search
+            </a>
+          </form>
+        </div>
         {videos.length > 0 ? (
-          <div className="main-player">
+          <div className="main-player" id="main">
             <div className="liked" id="like-btn" onClick={this.toggleLike}>
               <div className="liked-container">
                 {active.liked ? (

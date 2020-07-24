@@ -13,7 +13,18 @@ body {
 h1 {
   text-transform: uppercase;
 }
+/* VideoPlayer main  */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  background-color: #000;
+}
 
+.main-player {
+  padding-top: 5rem;
+}
 /* navabrTest spacing */
 /* .navbar-brand {
   display: inline;
@@ -42,19 +53,25 @@ h1 {
 
 .video,
 .carousel {
-  height: 30rem;
+  height: 80vh;
+  margin-bottom: 5rem;
   background-color: #000;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
 }
 
-.form input {
+.form input,
+a {
   text-align: center;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
+  margin-bottom: 1.5rem;
+  height: 3rem;
 }
 
 /* Banner CSS */

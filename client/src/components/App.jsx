@@ -130,7 +130,6 @@ class App extends React.Component {
         <NavBar items={items} handleClick={this.handleClick} />
         {about ? <About /> : null}
         <div>
-          <Banner />
           <VideoPlayer
             submit={this.handleSubmit}
             fav={this.handleFavorite}
