@@ -71,7 +71,6 @@ class App extends React.Component {
     axios
       .get("/fav")
       .then(({ data }) => {
-        console.log(data);
         this.setState({ favorites: data });
       })
       .catch((err) => console.log(err));
@@ -110,11 +109,17 @@ class App extends React.Component {
   }
 
   handleFavorite(idx) {
-    let { videos } = this.state;
-    let video = videos[idx];
+    let { videos, favorites, showFav } = this.state;
+    let video;
+    if (showFav) {
+      video = favorites[idx];
+    } else {
+      video = videos[idx];
+    }
 
     video.liked = video.liked === undefined ? true : !video.liked;
     this.setState({ videos });
+
     axios
       .post("/fav", {
         video,
@@ -137,7 +142,12 @@ class App extends React.Component {
       this.setState({ items: goBack });
     }
     if (id === "go back") {
-      this.setState({ about: false, showFav: false, items: navItems });
+      this.setState({
+        about: false,
+        showFav: false,
+        videos: welcome,
+        items: navItems,
+      });
     }
   }
 

@@ -54,6 +54,7 @@ class VideoPlayer extends React.Component {
     const { videos } = this.props;
     const { index } = this.state;
     let active = videos[index];
+    console.log(videos);
     return (
       <div>
         <div className="main-container">
