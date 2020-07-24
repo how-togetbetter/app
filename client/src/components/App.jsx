@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 
 // import Nav from "./Nav.jsx";
-import NavBarTest from "./NavBarTest";
+import NavBar from "./NavBar";
 import VideoPlayer from "./VideoPlayer.jsx";
 import API_KEY from "../../../config";
 import About from "./About";
 import Banner from "./Banner.jsx";
-import ExtraServices from "./ExtraServices.jsx";
+import Services from "./Services.jsx";
 import Footer from "./Footer.jsx";
 
 const navItems = [
@@ -127,7 +127,7 @@ class App extends React.Component {
     return (
       <div className="main">
         {/* <Nav items={items} /> */}
-        <NavBarTest items={items} handleClick={this.handleClick} />
+        <NavBar items={items} handleClick={this.handleClick} />
         {about ? <About /> : null}
         <div>
           <Banner />
@@ -136,7 +136,7 @@ class App extends React.Component {
             fav={this.handleFavorite}
             videos={videos}
           />
-          <ExtraServices />
+          <Services />
           <Footer />
         </div>
       </div>

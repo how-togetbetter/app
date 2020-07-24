@@ -25,8 +25,17 @@ h1 {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  justify-content: space-evenly;
+}
+#about-title {
+  padding: 50px;
 }
 
+#about-body {
+  padding: 50px;
+  border: 2px solid black;
+  margin: 20px;
+}
 .jumbotron {
   margin-bottom: 5rem;
 }

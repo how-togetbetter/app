@@ -3,8 +3,8 @@ import React from "react";
 const About = (props) => {
   return (
     <div id="about">
-      <h1>Hello from OUSMANE!</h1>
-      <p>
+      <h1 id="about-title">H.O.W about this page, right?!</h1>
+      <p id="about-body">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea dolores
         adipisci esse facere quo dolore recusandae vitae, ad id aut porro
         assumenda ut delectus repudiandae, necessitatibus sunt, reiciendis eos!
